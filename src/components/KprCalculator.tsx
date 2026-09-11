@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
-import { Calculator, Landmark, ArrowUpRight, HelpCircle } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { COMPANY_PROFILE } from "@/data/propertyData";
 
 export default function KprCalculator() {
@@ -10,7 +10,6 @@ export default function KprCalculator() {
   const [tenorYears, setTenorYears] = useState<number>(15);
   const [interestRate, setInterestRate] = useState<number>(4.25);
 
-  // Mortgage calculations
   const calculation = useMemo(() => {
     const dpAmount = (propertyPrice * dpPercentage) / 100;
     const loanAmount = propertyPrice - dpAmount;
@@ -41,31 +40,22 @@ export default function KprCalculator() {
   };
 
   return (
-    <section id="kpr" className="py-20 bg-[#fafaf9] border-b border-gray-200/60">
+    <section id="kpr" className="py-20 bg-[#fafaf9] border-b border-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-800 uppercase tracking-wider mb-2">
-            <Calculator className="w-4 h-4 text-emerald-700" />
-            <span>Simulasi KPR Surabaya</span>
-          </div>
-          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-gray-900 tracking-tight">
-            Hitung Estimasi Angsuran Rumah Impian Anda
-          </h2>
-          <p className="text-gray-600 mt-2 text-sm sm:text-base">
-            Sesuaikan harga properti, nominal uang muka, jangka waktu tenor, dan suku bunga untuk mendapatkan gambaran pembiayaan KPR yang transparan.
-          </p>
-        </div>
+        <h2 className="font-serif text-2xl sm:text-3xl font-bold text-gray-900 tracking-tight mb-10">
+          Kalkulator Angsuran KPR
+        </h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Controls Form */}
-          <div className="lg:col-span-7 bg-white p-6 sm:p-8 rounded-2xl border border-gray-200 shadow-sm space-y-6">
-            {/* Property Price Slider */}
+          <div className="lg:col-span-7 bg-white p-6 sm:p-7 rounded-2xl border border-gray-200 space-y-6">
+            {/* Property Price */}
             <div>
               <div className="flex justify-between items-center mb-2">
-                <label className="text-sm font-semibold text-gray-900">
+                <label className="text-xs font-semibold uppercase tracking-wider text-gray-700">
                   Harga Properti
                 </label>
-                <span className="font-serif text-base sm:text-lg font-bold text-[#0f382c]">
+                <span className="font-serif text-base font-bold text-gray-900">
                   {formatRupiah(propertyPrice)}
                 </span>
               </div>
@@ -76,7 +66,7 @@ export default function KprCalculator() {
                 step="50000000"
                 value={propertyPrice}
                 onChange={(e) => setPropertyPrice(Number(e.target.value))}
-                className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#0f382c]"
+                className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-black"
               />
               <div className="flex justify-between text-[11px] text-gray-400 mt-1">
                 <span>Rp 500 Jt</span>
@@ -85,13 +75,13 @@ export default function KprCalculator() {
               </div>
             </div>
 
-            {/* Down Payment Percentage Slider */}
+            {/* DP */}
             <div>
               <div className="flex justify-between items-center mb-2">
-                <label className="text-sm font-semibold text-gray-900">
-                  Uang Muka (DP {dpPercentage}%)
+                <label className="text-xs font-semibold uppercase tracking-wider text-gray-700">
+                  Uang Muka ({dpPercentage}%)
                 </label>
-                <span className="text-sm font-bold text-gray-800">
+                <span className="text-xs font-bold text-gray-900">
                   {formatRupiah(calculation.dpAmount)}
                 </span>
               </div>
@@ -102,19 +92,19 @@ export default function KprCalculator() {
                 step="5"
                 value={dpPercentage}
                 onChange={(e) => setDpPercentage(Number(e.target.value))}
-                className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#0f382c]"
+                className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-black"
               />
               <div className="flex justify-between text-[11px] text-gray-400 mt-1">
-                <span>5% (Promo)</span>
+                <span>5%</span>
                 <span>20%</span>
                 <span>50%</span>
               </div>
             </div>
 
-            {/* Tenor (Years) Buttons */}
+            {/* Tenor */}
             <div>
-              <label className="block text-sm font-semibold text-gray-900 mb-2">
-                Jangka Waktu Tenor (Tahun)
+              <label className="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-2">
+                Jangka Waktu (Tahun)
               </label>
               <div className="grid grid-cols-5 gap-2">
                 {[5, 10, 15, 20, 25].map((year) => (
@@ -122,9 +112,9 @@ export default function KprCalculator() {
                     key={year}
                     type="button"
                     onClick={() => setTenorYears(year)}
-                    className={`py-2 rounded-lg text-xs sm:text-sm font-semibold border transition-all ${
+                    className={`py-2 rounded-lg text-xs font-semibold border transition-all ${
                       tenorYears === year
-                        ? "bg-[#0f382c] border-[#0f382c] text-white shadow-sm"
+                        ? "bg-[#09100d] border-[#09100d] text-white"
                         : "bg-gray-50 border-gray-200 text-gray-700 hover:bg-gray-100"
                     }`}
                   >
@@ -134,13 +124,13 @@ export default function KprCalculator() {
               </div>
             </div>
 
-            {/* Interest Rate Slider */}
+            {/* Interest */}
             <div>
               <div className="flex justify-between items-center mb-2">
-                <label className="text-sm font-semibold text-gray-900 flex items-center gap-1">
-                  <span>Suku Bunga KPR Efektif / Fixed</span>
+                <label className="text-xs font-semibold uppercase tracking-wider text-gray-700">
+                  Suku Bunga KPR Fixed
                 </label>
-                <span className="text-sm font-bold text-emerald-800">
+                <span className="text-xs font-bold text-gray-900">
                   {interestRate}% p.a.
                 </span>
               </div>
@@ -151,77 +141,68 @@ export default function KprCalculator() {
                 step="0.25"
                 value={interestRate}
                 onChange={(e) => setInterestRate(Number(e.target.value))}
-                className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#0f382c]"
+                className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-black"
               />
               <div className="flex justify-between text-[11px] text-gray-400 mt-1">
-                <span>3.0% (Promo Khusus)</span>
+                <span>3.0%</span>
                 <span>6.5%</span>
                 <span>10.0%</span>
               </div>
             </div>
-
-            {/* Quick preset note */}
-            <div className="flex items-start gap-2 p-3 bg-emerald-50 rounded-xl border border-emerald-200 text-xs text-emerald-900">
-              <HelpCircle className="w-4 h-4 text-emerald-700 shrink-0 mt-0.5" />
-              <span>
-                Simulasi ini bersifat estimasi. Hubungi representatif kami untuk mendapatkan penawaran suku bunga KPR spesial developer dan promo bebas biaya provisi/administrasi bank.
-              </span>
-            </div>
           </div>
 
-          {/* Result Card & Bank Partners */}
+          {/* Result Card */}
           <div className="lg:col-span-5 space-y-6">
-            <div className="bg-[#0f382c] text-white p-6 sm:p-8 rounded-2xl shadow-xl space-y-6">
+            <div className="bg-[#09100d] text-white p-6 sm:p-7 rounded-2xl space-y-6">
               <div>
-                <div className="text-xs uppercase tracking-wider text-emerald-200 font-semibold mb-1">
+                <div className="text-[10px] uppercase tracking-wider text-gray-400 font-semibold mb-1">
                   Estimasi Angsuran Bulanan
                 </div>
-                <div className="font-serif text-3xl sm:text-4xl font-bold tracking-tight text-white">
+                <div className="font-serif text-3xl font-bold tracking-tight text-white">
                   {formatRupiah(calculation.monthlyInstallment)}
-                  <span className="text-xs font-normal text-emerald-200 ml-1">/bulan</span>
+                  <span className="text-xs font-normal text-gray-400 ml-1">/bulan</span>
                 </div>
-                <div className="text-xs text-emerald-300/80 mt-1">
+                <div className="text-xs text-gray-400 mt-1">
                   Fixed {tenorYears} Tahun • Suku Bunga {interestRate}%
                 </div>
               </div>
 
-              <div className="space-y-3 pt-4 border-t border-white/15 text-xs">
+              <div className="space-y-2.5 pt-4 border-t border-gray-800 text-xs">
                 <div className="flex justify-between">
-                  <span className="text-emerald-100">Harga Rumah:</span>
+                  <span className="text-gray-400">Harga Properti:</span>
                   <span className="font-semibold text-white">{formatRupiah(propertyPrice)}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-emerald-100">Uang Muka ({dpPercentage}%):</span>
+                  <span className="text-gray-400">Uang Muka:</span>
                   <span className="font-semibold text-white">{formatRupiah(calculation.dpAmount)}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-emerald-100">Plafon Pinjaman KPR:</span>
+                  <span className="text-gray-400">Plafon Pinjaman:</span>
                   <span className="font-semibold text-white">{formatRupiah(calculation.loanAmount)}</span>
                 </div>
               </div>
 
               <a
                 href={`https://wa.me/${COMPANY_PROFILE.whatsapp.replace(/[^0-9]/g, "")}?text=${encodeURIComponent(
-                  `Halo Marketing Darmawangsa, saya ingin konsultasi KPR untuk rumah harga ${formatRupiah(
+                  `Halo Marketing Darmawangsa, saya ingin konsultasi KPR untuk rumah ${formatRupiah(
                     propertyPrice
-                  )} dengan DP ${formatRupiah(calculation.dpAmount)} (tenor ${tenorYears} tahun).`
+                  )} dengan DP ${formatRupiah(calculation.dpAmount)}.`
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full inline-flex items-center justify-center gap-2 py-3.5 px-4 rounded-xl bg-white text-[#0f382c] font-semibold text-sm hover:bg-gray-100 transition-all shadow-md active:scale-95"
+                className="w-full inline-flex items-center justify-center gap-1.5 py-3 px-4 rounded-xl bg-white text-gray-900 font-semibold text-xs hover:bg-gray-100 transition-all"
               >
-                <span>Ajukan Konsultasi KPR Gratis</span>
-                <ArrowUpRight className="w-4 h-4" />
+                <span>Konsultasi Pembiayaan KPR</span>
+                <ArrowUpRight className="w-3.5 h-3.5" />
               </a>
             </div>
 
-            {/* Bank Partners List */}
-            <div className="bg-white p-5 rounded-2xl border border-gray-200 shadow-sm">
-              <div className="flex items-center gap-2 text-xs font-semibold text-gray-700 uppercase tracking-wider mb-3">
-                <Landmark className="w-4 h-4 text-emerald-800" />
-                <span>Bank Rekanan Resmi Developer</span>
+            {/* Bank list */}
+            <div className="bg-white p-5 rounded-2xl border border-gray-200">
+              <div className="text-xs font-bold uppercase tracking-wider text-gray-900 mb-3">
+                Bank Rekanan KPR
               </div>
-              <div className="space-y-2.5">
+              <div className="space-y-2">
                 {COMPANY_PROFILE.partnerBanks.map((bank, i) => (
                   <div
                     key={i}
