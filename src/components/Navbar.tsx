@@ -29,19 +29,24 @@ export default function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
         isScrolled
-          ? "bg-white/95 backdrop-blur-md border-b border-gray-200 py-3"
-          : "bg-white/90 backdrop-blur-sm border-b border-gray-200/80 py-4"
+          ? "bg-[#faf8f5]/95 backdrop-blur-md border-b border-[#e5ded4] shadow-sm py-3"
+          : "bg-[#faf8f5]/85 backdrop-blur-sm border-b border-[#ece6dc] py-4"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2.5">
-            <span className="font-serif text-xl font-bold tracking-tight text-[#09100d]">
-              DARMAWANGSA
-            </span>
-            <span className="text-[11px] tracking-widest font-semibold text-gray-500 uppercase border-l border-gray-300 pl-2.5">
-              SURABAYA
-            </span>
+          <Link href="/" className="flex items-center gap-3 group">
+            <div className="w-9 h-9 rounded-lg bg-[#0d2e23] border border-[#235342] flex items-center justify-center text-[#e2c77d] font-serif font-bold text-lg shadow-sm group-hover:bg-[#134032] transition-colors">
+              D
+            </div>
+            <div>
+              <span className="block font-serif text-lg font-bold tracking-tight text-[#0d2e23] leading-tight">
+                DARMAWANGSA
+              </span>
+              <span className="block text-[10px] tracking-[0.22em] uppercase font-bold text-[#8a6829]">
+                LIVING SURABAYA
+              </span>
+            </div>
           </Link>
 
           <nav className="hidden md:flex items-center gap-7">
@@ -49,7 +54,7 @@ export default function Navbar() {
               <a
                 key={link.name}
                 href={link.href}
-                className="text-xs font-semibold uppercase tracking-wider text-gray-700 hover:text-black transition-colors"
+                className="text-xs font-bold uppercase tracking-wider text-[#424d47] hover:text-[#0d2e23] transition-colors"
               >
                 {link.name}
               </a>
@@ -59,10 +64,10 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center gap-3">
             <a
               href="#kunjungan"
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#09100d] hover:bg-black text-white text-xs font-semibold transition-all"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#0d2e23] hover:bg-[#144234] text-[#f7eed4] text-xs font-bold uppercase tracking-wider border border-[#285b4a] transition-all shadow-sm active:scale-95"
             >
               <span>Jadwal Survey</span>
-              <ArrowUpRight className="w-3.5 h-3.5" />
+              <ArrowUpRight className="w-3.5 h-3.5 text-[#e2c77d]" />
             </a>
           </div>
 
@@ -71,7 +76,7 @@ export default function Navbar() {
               href={`https://wa.me/${COMPANY_PROFILE.whatsapp.replace(/[^0-9]/g, "")}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 rounded-md bg-gray-100 text-gray-800"
+              className="p-2 rounded-md bg-[#ebf3ee] text-[#0d2e23] border border-[#c3ded0]"
               aria-label="WhatsApp"
             >
               <Phone className="w-4 h-4" />
@@ -79,7 +84,7 @@ export default function Navbar() {
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-md text-gray-800 hover:bg-gray-100"
+              className="p-2 rounded-md text-[#0d2e23] hover:bg-[#ece6dc]"
               aria-label="Menu"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -88,13 +93,13 @@ export default function Navbar() {
         </div>
 
         {mobileMenuOpen && (
-          <div className="md:hidden pt-4 pb-4 mt-3 border-t border-gray-200 space-y-2">
+          <div className="md:hidden pt-4 pb-4 mt-3 border-t border-[#e5ded4] space-y-2">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="block px-2 py-2 text-sm font-semibold text-gray-800 hover:bg-gray-50"
+                className="block px-2 py-2 text-sm font-bold text-[#0d2e23] hover:bg-[#ece6dc] rounded-md"
               >
                 {link.name}
               </a>
@@ -103,7 +108,7 @@ export default function Navbar() {
               <a
                 href="#kunjungan"
                 onClick={() => setMobileMenuOpen(false)}
-                className="block w-full text-center px-4 py-2.5 rounded-lg bg-[#09100d] text-white text-xs font-semibold"
+                className="block w-full text-center px-4 py-2.5 rounded-lg bg-[#0d2e23] text-[#f7eed4] text-xs font-bold uppercase tracking-wider shadow-sm"
               >
                 Jadwalkan Kunjungan Lokasi
               </a>
