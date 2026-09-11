@@ -1,18 +1,5 @@
 import type { Metadata } from "next";
-import { Instrument_Sans, Playfair_Display } from "next/font/google";
 import "./globals.css";
-
-const instrumentSans = Instrument_Sans({
-  subsets: ["latin"],
-  variable: "--font-sans",
-  display: "swap",
-});
-
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  variable: "--font-serif",
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   title: "Darmawangsa Graha Mandiri | Pengembang Perumahan Eksklusif Surabaya",
@@ -43,7 +30,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="id" className={`${instrumentSans.variable} ${playfair.variable} scroll-smooth`}>
+    <html lang="id" className="scroll-smooth">
       <body className="min-h-screen bg-[#fafaf9] text-[#111827] font-sans antialiased selection:bg-[#0f382c] selection:text-white">
         {children}
       </body>

@@ -9,8 +9,22 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["var(--font-sans)", "Inter", "sans-serif"],
-        serif: ["var(--font-serif)", "Georgia", "serif"],
+        sans: [
+          '"Instrument Sans"',
+          '"Inter"',
+          "-apple-system",
+          "BlinkMacSystemFont",
+          '"Segoe UI"',
+          "Roboto",
+          "sans-serif",
+        ],
+        serif: [
+          '"Playfair Display"',
+          "Georgia",
+          "Cambria",
+          '"Times New Roman"',
+          "serif",
+        ],
       },
       colors: {
         brand: {
